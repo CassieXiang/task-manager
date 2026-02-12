@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import ErrorBoundary from "@/components/ErrorBoundary";
+import NavBar from "@/components/NavBar";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -14,8 +15,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Task Manager",
-  description: "A task management app with priorities, due dates, and filters.",
+  title: "Productivity App",
+  description: "Task management and daily diary in one place.",
 };
 
 export default function RootLayout({
@@ -35,7 +36,14 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <ErrorBoundary>{children}</ErrorBoundary>
+        <ErrorBoundary>
+          <div className="min-h-screen bg-zinc-50 dark:bg-zinc-950">
+            <NavBar />
+            <div className="mx-auto max-w-4xl px-4 py-8 sm:px-6">
+              {children}
+            </div>
+          </div>
+        </ErrorBoundary>
       </body>
     </html>
   );
